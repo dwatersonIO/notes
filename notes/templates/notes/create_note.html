@@ -1,0 +1,35 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h1><small class="text-muted">Create Note</small></h1>
+</div>
+
+<div class="container">
+    <table class="table">
+        <thead>
+
+            <tr>
+                <th>Summary</th>
+                <th>Text</th>
+                <th>Tags</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <form method="POST" action="">
+                {% csrf_token %}
+                <tr>
+                    <th>{{ form.summary }}</th>
+                    <th>{{ form.text }}</th>
+                    <th>{{ form.tags }}</th>
+
+                    <th><input class="btn btn-sm btn-primary" value="Add" type="submit" name="Create Note"></th>
+                    <th></th>
+                </tr>
+            </form>
+        </thead>
+</div>
+
+{% endblock content %}

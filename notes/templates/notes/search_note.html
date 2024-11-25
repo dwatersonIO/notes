@@ -1,0 +1,63 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h1><small class="text-muted">Search View</small></h1>
+ </div>
+
+
+<div class="container">
+    <table class="table">
+    <thead>
+        <tr>
+            <th>Search Text</th>
+            <th>Tags</th>
+            <th>Date Created</th>
+            <th>
+                
+            </th>
+        </tr>
+    
+    <form class="d-flex" method="get" name="search_text" action="{% url 'search_note' %}">  
+    {% csrf_token %}
+    
+    <tr>
+        <td>{{ form.search_text }}</td>
+        <td>
+            {% for checkbox in form.search_tags %}
+             <label> {{ checkbox }}</label>
+            {% endfor %}
+        </td>
+
+        <td>[Date]</td>
+
+        <td>
+            <button class="btn btn-outline-secondary" placeholder="" type="submit">Search.</button>
+        </td>
+    </tr>
+    
+</form>
+</thead>
+        
+            {% include 'notes\partial_test.html' %}
+            {% for note in notes %}
+                <tr id="search_results">
+                    <td>{{ note.summary }}</td>
+                    <td>{{ note.text }}</td>
+                    <td>
+                        {% for tag in note.tags.all %}
+                            {{ tag }}
+                        {% endfor %}
+                    </td>
+                    <td>{{ note.date_created | date:"M j, Y" }}</td>
+                </tr>
+             {% endfor %}
+
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock content %}
+

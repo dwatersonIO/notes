@@ -1,0 +1,59 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h1><small class="text-muted">Detail View</small></h1>
+
+</div>
+
+
+<div class="container">
+    <table class="table">
+        <thead>
+
+            <tr>
+                <th>Summary</th>
+                <th>Text</th>
+                <th>Tags</th>
+                <th>Date Created</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>
+                    {% if searched %}
+                        <h4>You searched for <span style="color: blue;">{{ searched}}</span></h4> 
+                    {% else %}
+                    {% endif %}    
+                </td>
+
+
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ note.summary }}</td>
+                <td>{{ note.text }}</td>
+                <td>
+                    {% for tag in note.tags.all %}
+                        {{ tag }}
+                    {% endfor %}
+                </td>
+                <td>{{ note.date_created | date:"M j, Y"}}</td>
+                <td>
+
+                    <a class="btn btn-sm btn-outline-success" href="{% url 'update_note' note.id %}">Update</a>
+
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-outline-danger" href="{% url 'delete_note' note.id %}">Delete</a>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock content %}

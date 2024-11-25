@@ -1,0 +1,28 @@
+
+<div class="row column-gap-0 row-gap-2 ">
+{% for note in notes %}
+        <div class="col-3 p-2 myborder">
+            <b>Summary: <a href="{% url 'detail_note' note.id %}">{{ note.summary }}</a></b>
+            <br> 
+            <b>Text:</b> {{ note.text }}
+            <br>
+            <b>Date:</b> {{ note.date_created | date:"M j, Y" }}
+            <br>
+            <b>Tags:</b>
+            {% for tag in note.tags.all %}
+               <em> {{ tag }}</em>
+            {% endfor %}
+        </div>        
+{% endfor %}  
+</div>
+
+
+    
+<style>
+
+.myborder {
+    border: 5px solid white; 
+    background-color: lightgrey
+}
+
+</style>

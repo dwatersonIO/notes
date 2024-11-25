@@ -1,0 +1,38 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h1><small class="text-muted">Confirm Deletion</small></h1>
+</div>
+
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Text</th>
+                <th>Type</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <td>{{ note.text}}</td>
+                    <td>{{ note.type}}</td>
+                    <td>
+                        <a class="btn btn-sm btn-secondary" href="{% url 'index' %}">Cancel</a>
+                    </td>
+                    <td>
+                        <input class="btn btn-sm btn-danger" type="submit" value="Confirm Deletion" name="Confirm">
+                    </td>
+                </form>
+            </tr>
+        </tbody>
+    </table>
+
+
+    {% endblock content %}

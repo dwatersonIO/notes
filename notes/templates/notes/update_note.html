@@ -1,0 +1,40 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Notes App <small class="text-muted">Update View</small></h1>
+</div>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Summary</th>
+                <th>Text</th>
+                <th>Tags</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <td>{{ form.summary}}</td>
+                    <td>{{ form.text}}</td>
+                    <td>{{ form.tags}}</td>
+                    <td>
+                        <input class="btn btn-sm btn-success" type="submit" value="Save Changes" name="Update Note">
+                    </td>
+                    <td>
+
+                    </td>
+                </form>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    {% endblock content %}

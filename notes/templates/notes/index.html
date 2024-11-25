@@ -1,0 +1,40 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h1><small class="text-muted">Listing View</small></h1>
+</div>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Summary</th>`
+                <th>Text</th>
+                <th>Tags</th>
+                <th>Date Created</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for note in notes %}
+            <tr>
+                <td><a href="{% url 'detail_note' note.id %}"> {{ note.summary }} </a></td>
+                <td>{{ note.text }}</td>
+                <td>
+                    {% for tag in note.tags.all %}
+                        {{ tag }}
+                    {% endfor %}
+                </td>
+                <td>{{ note.date_created | date:"M j, Y"}}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock content %}
